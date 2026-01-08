@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="welcome-container">
+    <div class="rainbow-header">
+        <img src="/static/main/img/Dio gay.jpg" alt="Dio" class="background-image">
+        
+        <!-- Изогнутый радужный текст поверх Dio -->
+        <svg viewBox="0 0 800 200" class="rainbow-svg">
+            <defs>
+                <linearGradient id="rainbow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ff0000" />
+                    <stop offset="16%" stop-color="#ff8000" />
+                    <stop offset="33%" stop-color="#ffff00" />
+                    <stop offset="50%" stop-color="#00ff00" />
+                    <stop offset="66%" stop-color="#0000ff" />
+                    <stop offset="83%" stop-color="#4b0082" />
+                    <stop offset="100%" stop-color="#ff00ff" />
+                </linearGradient>
+            </defs>
+
+            <path id="curve" d="M100,120 Q400,100 700,120" fill="none" />
+
+            <text>
+                <textPath href="#curve" startOffset="50%" text-anchor="middle">
+                    <tspan class="rainbow-text" fill="url(#rainbow-gradient)">Тест на гея</tspan>
+                </textPath>
+            </text>
+        </svg>
+    </div>
+
+    <button onclick="window.location.href='/start/'">Начать</button>
+</div>
+{% endblock %}

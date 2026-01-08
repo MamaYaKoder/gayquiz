@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="result-container">
+    <h1>Результат: {{ message }}</h1>
+    <p>Ты гей на {{ percentage }}%!</p>
+    <button onclick="window.location.href='/'">На главную</button>
+</div>
+{% endblock %}

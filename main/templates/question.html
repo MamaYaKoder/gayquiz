@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="question-container">
+    {% if question.image %}
+    <img src="{{ question.image.url }}" alt="Question Image" class="question-image">
+    {% endif %}
+    <h2>{{ question.text }}</h2>
+    <form method="post" id="quiz-form">
+        {% csrf_token %}
+        
+        <!-- Скрытое поле, куда запишем выбранный вариант -->
+        <input type="hidden" name="option" id="selected-option" value="">
+
+        <button type="button" data-value="1">{{ question.option1 }}</button>
+        <button type="button" data-value="2">{{ question.option2 }}</button>
+        <button type="button" data-value="3">{{ question.option3 }}</button>
+        <button type="button" data-value="4">{{ question.option4 }}</button>
+    </form>
+</div>
+<script>
+    document.querySelectorAll('button[data-value]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Убираем pressed у всех кнопок
+            document.querySelectorAll('button[data-value]').forEach(b => b.classList.remove('pressed'));
+            
+            // Делаем выбранную кнопку ярко-голубой с анимацией
+            this.classList.add('pressed');
+
+            // Записываем выбранный вариант в hidden input
+            document.getElementById('selected-option').value = this.getAttribute('data-value');
+
+            // Через 2 секунды отправляем форму
+            setTimeout(() => {
+                document.getElementById('quiz-form').submit();
+            }, 2000);
+        });
+    });
+</script>
+{% endblock %}
